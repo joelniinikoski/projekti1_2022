@@ -33,7 +33,6 @@ public class Enemy1 : MonoBehaviour
     }
     public void TakeDamage(float dmg, float kb)
     {
-        Debug.Log("HEllo");
         health -= dmg;
 
         //knockback

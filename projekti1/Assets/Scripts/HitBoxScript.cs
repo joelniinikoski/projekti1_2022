@@ -6,6 +6,7 @@ public class HitBoxScript : MonoBehaviour
 {
     public float dmg = 5;
     public float kb = 50;
+    public GameObject bulletDestroyed;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,12 +14,13 @@ public class HitBoxScript : MonoBehaviour
         {
             Enemy1 enemyScript = collision.gameObject.GetComponent<Enemy1>();
             enemyScript.TakeDamage(dmg, kb);
-            if (gameObject.tag == "Bullet")
-            {
-                Destroy(gameObject);
-            }
         }
-        
+        if (gameObject.tag == "Bullet" && collision.gameObject.tag != "Player")
+        {
+            Destroy(Instantiate(bulletDestroyed, transform.position, transform.rotation),1f);
+            Destroy(gameObject);
+        }
+
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
