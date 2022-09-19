@@ -8,6 +8,11 @@ public class Enemy1 : MonoBehaviour
     public float health = 100;
     Transform playerT;
     public AudioSource damageSource;
+    public Material whiteMat;
+    public float flashTime = 0.1f;
+
+    float matTimer = 0f;
+    Material originalMat;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -23,6 +28,19 @@ public class Enemy1 : MonoBehaviour
         rb = this.GetComponent<Rigidbody2D>();
         cl = this.GetComponent<Collider2D>();
         sr = this.GetComponent<SpriteRenderer>();
+
+        originalMat = sr.material;
+    }
+
+    private void Update()
+    {
+        if (matTimer <= 0)
+        {
+            sr.material = originalMat;
+        } else
+        {
+            matTimer -= Time.deltaTime;
+        }
     }
 
     // Update is called once per frame
@@ -33,6 +51,10 @@ public class Enemy1 : MonoBehaviour
     }
     public void TakeDamage(float dmg, float kb)
     {
+        //white flash material
+        sr.material = whiteMat;
+        matTimer = flashTime;
+
         health -= dmg;
 
         //knockback
