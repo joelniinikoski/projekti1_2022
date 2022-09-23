@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32c3bc6b23ea464cbbcf3d743bc65e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 5
+  dmg: 10
   kb: 50
   bulletDestroyed: {fileID: 8876025661995079173, guid: 2b2370a9456ed1d4d8896b04086b3cfa, type: 3}
 --- !u!61 &5595691311015844837

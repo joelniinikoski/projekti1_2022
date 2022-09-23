@@ -254,7 +254,7 @@ MonoBehaviour:
   health: 30
   damageSource: {fileID: 6336584708140656260}
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}
-  flashTime: 0.05
+  flashTime: 0.08
 --- !u!50 &6336584709183652280
 Rigidbody2D:
   serializedVersion: 4
