@@ -9,11 +9,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float health;
     [SerializeField] AudioSource damageSource;
     [SerializeField] float damageTimerReset = 0.5f;
-    [SerializeField] Text hpText;
     [SerializeField] Material whiteMat;
     [SerializeField] float flashTime = 0.05f;
 
-
+    Image hpBar;
     TrailRenderer tr;
     SpriteRenderer sr;
     Material defaultMat;
@@ -30,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     float matTimer = 0f;
     float damageTimer = 0f;
     Vector2 moveVector;
+    float startHealth;
 
     private void Start()
     {
@@ -37,7 +37,9 @@ public class PlayerMovement : MonoBehaviour
         tr = gameObject.GetComponent<TrailRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
+        hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
         defaultMat = sr.material;
+        startHealth = health;
     }
 
     // Update is called once per frame
@@ -66,10 +68,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
+            return;
         }
 
-        //hp text
-        hpText.text = "HP: " + health.ToString();
+        //hp bar
+        hpBar.fillAmount = health / startHealth;
 
         moveVector.x = Input.GetAxisRaw("Horizontal");
         moveVector.y = Input.GetAxisRaw("Vertical");
@@ -92,7 +95,6 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Dash()
     {
-        Debug.Log("Hello world");
         canDash = false;
         isDashing = true;
         rb.velocity = moveVector.normalized * dashingPower;

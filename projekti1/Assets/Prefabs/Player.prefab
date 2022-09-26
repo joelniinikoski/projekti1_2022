@@ -289,9 +289,9 @@ MonoBehaviour:
   health: 50
   damageSource: {fileID: 3554329909453505397}
   damageTimerReset: 0.5
-  hpText: {fileID: 7550891189826648257, guid: a5e16caf898273a48a45b1c20adb0d43, type: 3}
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}
   flashTime: 0.07
+  HPBar: {fileID: 1401049032759442267, guid: 6592fe9138752b2499ee57d86877a4d7, type: 3}
   dashingPower: 50
   dashingTime: 0.05
   dashingCooldown: 0.5
