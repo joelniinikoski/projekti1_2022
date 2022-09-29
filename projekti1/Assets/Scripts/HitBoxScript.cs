@@ -15,7 +15,7 @@ public class HitBoxScript : MonoBehaviour
             Enemy1 enemyScript = collision.gameObject.GetComponent<Enemy1>();
             enemyScript.TakeDamage(dmg, kb);
         }
-        if (gameObject.tag == "Bullet" && collision.gameObject.tag != "Player")
+        if (gameObject.tag == "Bullet" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "Trigger")
         {
             Destroy(Instantiate(bulletDestroyed, transform.position, transform.rotation),1f);
             Destroy(gameObject);

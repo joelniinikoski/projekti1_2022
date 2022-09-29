@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 6336584709183652281}
   - component: {fileID: 6336584709183652286}
   m_Layer: 0
-  m_Name: Enemy1
+  m_Name: Enemy 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 6336584709183651907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.45, y: 2.31, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6336584708140656263}
@@ -208,7 +208,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 368904278, guid: b4af6a4d4998ce140b7e10b3589b27db, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8124485, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedTowardsPlayer: 0.1
-  health: 30
+  health: 60
   damageSource: {fileID: 6336584708140656260}
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}
   flashTime: 0.08
@@ -314,6 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32c3bc6b23ea464cbbcf3d743bc65e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 5
+  dmg: 10
   kb: 50
   bulletDestroyed: {fileID: 0}
