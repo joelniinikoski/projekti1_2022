@@ -12,7 +12,7 @@ public class HitBoxScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy" && gameObject.tag != "Enemy")
         {
-            Enemy1 enemyScript = collision.gameObject.GetComponent<Enemy1>();
+            IDamageable enemyScript = collision.gameObject.GetComponent<IDamageable>();
             enemyScript.TakeDamage(dmg, kb);
         }
         if (gameObject.tag == "Bullet" && collision.gameObject.tag != "Player" && collision.gameObject.tag != "Trigger")
