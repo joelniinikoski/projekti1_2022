@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     //dashing
     bool canDash = true;
-    bool isDashing;
+    [System.NonSerialized]
+    public bool isDashing;
     [SerializeField] float dashingPower = 3f;
     [SerializeField] float dashingTime = 0.2f;
     [SerializeField] float dashingCooldown = 1f;
@@ -100,9 +101,11 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = moveVector.normalized * dashingPower;
         tr.emitting = true;
         damageTimer = dashingTime;
+        Physics2D.IgnoreLayerCollision(6, 7, true);
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         isDashing = false;
+        Physics2D.IgnoreLayerCollision(6, 7, false);
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7802511327225950693}
   - component: {fileID: 3554329909453505397}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6384990217695718056}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 4141810059334382470}
   - component: {fileID: 8565817037953983407}
   - component: {fileID: -6169308259380432111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -291,7 +291,6 @@ MonoBehaviour:
   damageTimerReset: 0.5
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}
   flashTime: 0.07
-  HPBar: {fileID: 1401049032759442267, guid: 6592fe9138752b2499ee57d86877a4d7, type: 3}
   dashingPower: 50
   dashingTime: 0.05
   dashingCooldown: 0.5
@@ -468,7 +467,7 @@ GameObject:
   - component: {fileID: 763579779737539343}
   - component: {fileID: 2409299884475791113}
   - component: {fileID: 1728209524235209148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}

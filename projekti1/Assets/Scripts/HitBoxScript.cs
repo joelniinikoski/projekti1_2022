@@ -10,7 +10,7 @@ public class HitBoxScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy" && gameObject.tag != "Enemy")
+        if (collision.gameObject.tag == "Enemy" && gameObject.tag == "Bullet")
         {
             IDamageable enemyScript = collision.gameObject.GetComponent<IDamageable>();
             enemyScript.TakeDamage(dmg, kb);
@@ -22,6 +22,7 @@ public class HitBoxScript : MonoBehaviour
         }
 
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player" && gameObject.tag == "Enemy")
