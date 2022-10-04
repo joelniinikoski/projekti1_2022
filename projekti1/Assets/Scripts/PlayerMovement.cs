@@ -101,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = moveVector.normalized * dashingPower;
         tr.emitting = true;
         damageTimer = dashingTime;
+        // ignore collision between enemy layer (7) and player layer (6)
         Physics2D.IgnoreLayerCollision(6, 7, true);
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;

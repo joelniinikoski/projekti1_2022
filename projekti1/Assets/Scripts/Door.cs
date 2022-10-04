@@ -15,9 +15,14 @@ public class Door : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
-                triggered = false;
-                Teleport(GameObject.FindGameObjectWithTag("Player"), teleport);
+                //change this to "if spawner in this room is inactive"
+                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+                {
+                    gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
+                    triggered = false;
+                    Teleport(GameObject.FindGameObjectWithTag("Player"), teleport);
+                }
+                
             }
         }
     }
