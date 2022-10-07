@@ -6,6 +6,7 @@ public class Door : MonoBehaviour
 {
     [SerializeField] Sprite doorOpen;
     [SerializeField] Transform teleport;
+    [SerializeField] GameObject activateSpawner;
 
     bool triggered = false;
 
@@ -20,6 +21,11 @@ public class Door : MonoBehaviour
                 {
                     gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
                     triggered = false;
+                    if (activateSpawner)
+                    {
+                        activateSpawner.SetActive(true);
+                    }
+                    gameObject.GetComponentInChildren<AudioSource>().Play();
                     Teleport(GameObject.FindGameObjectWithTag("Player"), teleport);
                 }
                 

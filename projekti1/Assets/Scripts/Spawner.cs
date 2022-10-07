@@ -7,31 +7,48 @@ public class Spawner : MonoBehaviour
     [Header("Enemy1")]
     [SerializeField] GameObject enemy1;
     [SerializeField] bool enemy1Active;
+    [SerializeField] int enemy1StartBatch;
     [SerializeField] float enemy1Interval = 5f;
     [SerializeField] int enemy1Amount;
 
-    [Header("Spawn Area")]
+    [Header("General")]
+    [SerializeField] bool startingBatch;
     [SerializeField] Vector2 spawnAreaMin;
     [SerializeField] Vector2 spawnAreaMax;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (startingBatch)
+        {
+            if (enemy1Active)
+            {
+                StartSpawn(enemy1StartBatch, enemy1);
+            }
+        }
         if (enemy1Active)
         {
-            StartCoroutine(spawnEnemy(enemy1, enemy1Interval));
+            StartCoroutine(spawnEnemy(enemy1, enemy1Interval, false));
         }
     }
 
-    private IEnumerator spawnEnemy(GameObject enemy, float interval)
+    private void StartSpawn(int enemyStartBatchSize, GameObject enemyPrefab)
+    {
+        for (int i = 0; i < enemyStartBatchSize; i++)
+        {
+            StartCoroutine(spawnEnemy(enemyPrefab, 0, true));
+        }
+    }
+
+    private IEnumerator spawnEnemy(GameObject enemy, float interval, bool start)
     {
         yield return new WaitForSeconds(interval);
         GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x), Random.Range(spawnAreaMin.y, spawnAreaMax.y)), Quaternion.identity);
         StartCoroutine(enemyFadeIn(newEnemy, 1f));
         enemy1Amount -= 1;
-        if (enemy1Amount > 0)
+        if (enemy1Amount > 0 && !start)
         {
-            StartCoroutine(spawnEnemy(enemy, interval));
+            StartCoroutine(spawnEnemy(enemy, interval, false));
         }
     }
 
