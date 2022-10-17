@@ -8,13 +8,16 @@ public class Enemy1 : MonoBehaviour, IDamageable
     public float health = 100;
     Transform playerT;
     public AudioSource damageSource;
+    public AudioSource deathSource;
     public Material whiteMat;
     public float flashTime = 0.1f;
-    
+    public float destroyTime = 1f;
 
+    Vector3 deathScale;
     float matTimer = 0f;
     Material originalMat;
-    bool isDead = false;
+    [System.NonSerialized]
+    public bool isDead = false;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -26,6 +29,10 @@ public class Enemy1 : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        if (!deathSource)
+        {
+            deathSource = damageSource;
+        }
         playerT = GameObject.FindGameObjectWithTag("Player").transform;
 
         rb = this.GetComponent<Rigidbody2D>();
@@ -51,6 +58,14 @@ public class Enemy1 : MonoBehaviour, IDamageable
         }
     }
 
+    private void LateUpdate()
+    {
+        if (isDead)
+        {
+            transform.localScale = deathScale;
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -67,22 +82,43 @@ public class Enemy1 : MonoBehaviour, IDamageable
         matTimer = flashTime;
 
         health -= dmg;
-
-        //knockback
-        rb.AddForce(direction.normalized * kb * -speedTowardsPlayer, ForceMode2D.Impulse);
-
-        damageSource.pitch = Random.Range(0.8f, 1.2f);
-        damageSource.Play();
-
-        //disable spriterenderer and collider so sound can play before death;
+   
         if (health <= 0)
         {
+            deathSource.pitch = Random.Range(0.8f, 1.2f);
+            deathSource.Play();
+
+            //disable spriterenderer and collider so sound can play before death;
+
             cl.enabled = false;
             isDead = true;
-            animator.SetTrigger("isDead");
+            //animator.SetTrigger("isDead");
+            StartCoroutine(Death(0.5f));
             rb.velocity = Vector2.zero;
 
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, destroyTime);
+        } else
+        {
+            damageSource.pitch = Random.Range(0.8f, 1.2f);
+            damageSource.Play();
+
+            //knockback
+            rb.AddForce(direction.normalized * kb * -speedTowardsPlayer, ForceMode2D.Impulse);
+        }
+    }
+    private IEnumerator Death(float animLength)
+    {
+        float startAnimLength = animLength;
+        Vector3 startScale = gameObject.transform.localScale;
+        while (true)
+        {
+            animLength -= Time.deltaTime;
+            deathScale = startScale * (Mathf.Max(0, animLength / startAnimLength));
+            if (animLength <= 0)
+            {
+                break;
+            }
+            yield return new WaitForEndOfFrame();
         }
     }
 }

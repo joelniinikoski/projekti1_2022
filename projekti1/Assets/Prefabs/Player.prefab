@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10f840ae957fc84da948bd706bb1f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 0.07
   health: 50
   damageSource: {fileID: 3554329909453505397}
   damageTimerReset: 0.5
@@ -293,7 +293,7 @@ MonoBehaviour:
   flashTime: 0.07
   dashingPower: 50
   dashingTime: 0.05
-  dashingCooldown: 0.5
+  dashingCooldown: 0.8
 --- !u!95 &6889297932972947120
 Animator:
   serializedVersion: 4
@@ -329,7 +329,7 @@ MonoBehaviour:
   pivot: {fileID: 5074921264957078854}
   bulletPrefab: {fileID: 5007608923701999615, guid: 21ecddba1963295469d3459c52942a2f, type: 3}
   bulletSpeed: 10
-  coolDown: 0.5
+  coolDown: 0.4
 --- !u!61 &8565817037953983407
 BoxCollider2D:
   m_ObjectHideFlags: 0
