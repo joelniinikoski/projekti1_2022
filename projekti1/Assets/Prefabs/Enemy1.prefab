@@ -142,7 +142,6 @@ GameObject:
   - component: {fileID: 6336584709183652287}
   - component: {fileID: 6336584709183652280}
   - component: {fileID: 6336584709183652281}
-  - component: {fileID: 6336584709183652286}
   m_Layer: 7
   m_Name: Enemy1
   m_TagString: Enemy
@@ -257,6 +256,7 @@ MonoBehaviour:
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}
   flashTime: 0.08
   destroyTime: 1
+  damage: 5
 --- !u!50 &6336584709183652280
 Rigidbody2D:
   serializedVersion: 4
@@ -304,18 +304,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &6336584709183652286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336584709183651907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b32c3bc6b23ea464cbbcf3d743bc65e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 5
-  kb: 50
-  bulletDestroyed: {fileID: 0}

@@ -8,6 +8,8 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 0.1f;
     public float coolDown = 0.5f;
+    [SerializeField] float bulletDmg = 10;
+    [SerializeField] float bulletKb = 50;
 
     float coolDownTimer = 0f;
 
@@ -37,6 +39,10 @@ public class Shooting : MonoBehaviour
     {
         GameObject bullet = Instantiate(bulletPrefab, pivot.transform.position, pivot.transform.rotation);
 
-        bullet.GetComponent<Bullet>().SetSpeed(bulletSpeed);
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+
+        bulletScript.bulletSpeed = bulletSpeed;
+        bulletScript.damage = bulletDmg;
+        bulletScript.kb = bulletKb;
     }
 }

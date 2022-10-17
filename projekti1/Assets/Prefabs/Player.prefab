@@ -171,8 +171,8 @@ GameObject:
   - component: {fileID: 1823641446878654253}
   - component: {fileID: 9074584860019709877}
   - component: {fileID: -3524756886665506829}
-  - component: {fileID: 6889297932972947120}
   - component: {fileID: 4141810059334382470}
+  - component: {fileID: 6889297932972947120}
   - component: {fileID: 8565817037953983407}
   - component: {fileID: -6169308259380432111}
   m_Layer: 6
@@ -294,6 +294,24 @@ MonoBehaviour:
   dashingPower: 50
   dashingTime: 0.05
   dashingCooldown: 0.8
+--- !u!114 &4141810059334382470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8316276696832339083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e204c01d687275f4b8d84da433bef196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivot: {fileID: 5074921264957078854}
+  bulletPrefab: {fileID: 5007608923701999615, guid: 21ecddba1963295469d3459c52942a2f, type: 3}
+  bulletSpeed: 10
+  coolDown: 0.4
+  bulletDmg: 10
+  bulletKb: 50
 --- !u!95 &6889297932972947120
 Animator:
   serializedVersion: 4
@@ -314,22 +332,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4141810059334382470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8316276696832339083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e204c01d687275f4b8d84da433bef196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivot: {fileID: 5074921264957078854}
-  bulletPrefab: {fileID: 5007608923701999615, guid: 21ecddba1963295469d3459c52942a2f, type: 3}
-  bulletSpeed: 10
-  coolDown: 0.4
 --- !u!61 &8565817037953983407
 BoxCollider2D:
   m_ObjectHideFlags: 0

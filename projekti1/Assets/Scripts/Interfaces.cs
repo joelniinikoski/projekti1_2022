@@ -6,3 +6,7 @@ public interface IDamageable
 {
     void TakeDamage(float dmg, float kb);
 }
+public interface IInteractable
+{
+    void Interact();
+}

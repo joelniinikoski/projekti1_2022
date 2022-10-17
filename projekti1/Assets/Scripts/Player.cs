@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] float health;
@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     float damageTimer = 0f;
     Vector2 moveVector;
     float startHealth;
+    HashSet<GameObject> interactables = new HashSet<GameObject>();
 
     private void Start()
     {
@@ -70,6 +71,16 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
             return;
+        }
+        if (interactables.Count > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                foreach (GameObject i in interactables)
+                {
+                    i.GetComponent<IInteractable>().Interact();
+                }
+            }   
         }
 
         //hp bar
@@ -129,6 +140,21 @@ public class PlayerMovement : MonoBehaviour
             {
                 
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            interactables.Add(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (interactables.Contains(collision.gameObject)) {
+            interactables.Remove(collision.gameObject);
         }
     }
 }

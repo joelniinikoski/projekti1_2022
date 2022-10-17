@@ -2,50 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     [SerializeField] Sprite doorOpen;
     [SerializeField] Transform teleport;
     [SerializeField] GameObject activateSpawner;
 
-    bool triggered = false;
-
-    private void Update()
+    public void Interact()
     {
-        if (triggered)
+        //change this to "if spawner in this room is inactive"
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
+            if (activateSpawner)
             {
-                //change this to "if spawner in this room is inactive"
-                if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
-                {
-                    gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
-                    triggered = false;
-                    if (activateSpawner)
-                    {
-                        activateSpawner.SetActive(true);
-                    }
-                    gameObject.GetComponentInChildren<AudioSource>().Play();
-                    Teleport(GameObject.FindGameObjectWithTag("Player"), teleport);
-                }
-                
+                activateSpawner.SetActive(true);
             }
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            triggered = true;
-        }
-    }
-
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            triggered = false;
+            gameObject.GetComponentInChildren<AudioSource>().Play();
+            Teleport(GameObject.FindGameObjectWithTag("Player"), teleport);
         }
     }
 

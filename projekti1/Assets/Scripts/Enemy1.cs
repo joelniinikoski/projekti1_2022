@@ -12,6 +12,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
     public Material whiteMat;
     public float flashTime = 0.1f;
     public float destroyTime = 1f;
+    [SerializeField] float damage = 5;
 
     Vector3 deathScale;
     float matTimer = 0f;
@@ -85,8 +86,12 @@ public class Enemy1 : MonoBehaviour, IDamageable
    
         if (health <= 0)
         {
-            deathSource.pitch = Random.Range(0.8f, 1.2f);
-            deathSource.Play();
+            if (deathSource.isActiveAndEnabled)
+            {
+                deathSource.pitch = Random.Range(0.8f, 1.2f);
+                deathSource.Play();
+            }
+                
 
             //disable spriterenderer and collider so sound can play before death;
 
@@ -99,8 +104,11 @@ public class Enemy1 : MonoBehaviour, IDamageable
             Destroy(gameObject, destroyTime);
         } else
         {
-            damageSource.pitch = Random.Range(0.8f, 1.2f);
-            damageSource.Play();
+            if (damageSource.isActiveAndEnabled)
+            {
+                damageSource.pitch = Random.Range(0.8f, 1.2f);
+                damageSource.Play();
+            }
 
             //knockback
             rb.AddForce(direction.normalized * kb * -speedTowardsPlayer, ForceMode2D.Impulse);
@@ -119,6 +127,14 @@ public class Enemy1 : MonoBehaviour, IDamageable
                 break;
             }
             yield return new WaitForEndOfFrame();
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            Player playerScript = collision.gameObject.GetComponent<Player>();
+            playerScript.TakeDamage(damage);
         }
     }
 }

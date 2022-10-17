@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy1BossScript : MonoBehaviour
 {
     [SerializeField] GameObject destroySpawner;
+    [SerializeField] GameObject levelEndDoor;
 
     float health;
 
@@ -14,6 +15,7 @@ public class Enemy1BossScript : MonoBehaviour
         health = gameObject.GetComponent<Enemy1>().health;
         if (health <= 0)
         {
+            levelEndDoor.SetActive(true);
             Destroy(destroySpawner);
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
