@@ -8,6 +8,9 @@ TagManager:
   - Bullet
   - HealthBar
   - Trigger
+  - LoadScene
+  - Prefabs
+  - Canvas
   layers:
   - Default
   - TransparentFX

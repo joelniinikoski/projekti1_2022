@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class LevelEndDoor : MonoBehaviour, IInteractable
 {
-    [SerializeField] LoadScene loadScene;
+    LoadScene loadScene;
     [SerializeField] int sceneID = 1;
+
+    private void Start()
+    {
+        loadScene = GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>();
+    }
 
     public void Interact()
     {
         loadScene.Load(sceneID);
+        loadScene.ChangeScene();
     }
 }

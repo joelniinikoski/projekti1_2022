@@ -257,6 +257,9 @@ MonoBehaviour:
   flashTime: 0.08
   destroyTime: 1
   damage: 5
+  randomDirectionCooldownMin: 2
+  randomDirectionCooldownMax: 4
+  randomDirectionSpeedMultiplier: 40
 --- !u!50 &6336584709183652280
 Rigidbody2D:
   serializedVersion: 4

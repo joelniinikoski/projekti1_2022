@@ -6,19 +6,24 @@ using UnityEngine.SceneManagement;
 public class LoadScene : MonoBehaviour
 {
     AsyncOperation loadingOperation;
-    bool isloading = false;
+    bool change = false;
 
     public void Load(int i)
     {
-        loadingOperation = SceneManager.LoadSceneAsync(i);
-        isloading = true;
+        StartCoroutine(Routine(i));
     }
 
-    private void Update()
+    IEnumerator Routine(int i)
     {
-        if (isloading && loadingOperation.isDone)
-        {
-            loadingOperation.allowSceneActivation = true;
-        }
+        yield return new WaitForSeconds(0.001f);
+        loadingOperation = SceneManager.LoadSceneAsync(i);
+        loadingOperation.allowSceneActivation = false;
+        yield return new WaitUntil(() => change);
+        loadingOperation.allowSceneActivation = true;
+    }
+
+    public void ChangeScene()
+    {
+        change = true;
     }
 }

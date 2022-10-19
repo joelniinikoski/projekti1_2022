@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
     float damageTimer = 0f;
     Vector2 moveVector;
     float startHealth;
+    bool isDead = false;
     HashSet<GameObject> interactables = new HashSet<GameObject>();
 
     private void Start()
@@ -47,6 +49,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hpBar.fillAmount = health / startHealth;
+        if (isDead) { return; }
         //i frames
         if (damageTimer > 0)
         {
@@ -82,10 +86,6 @@ public class Player : MonoBehaviour
                 }
             }   
         }
-
-        //hp bar
-        hpBar.fillAmount = health / startHealth;
-
         moveVector.x = Input.GetAxisRaw("Horizontal");
         moveVector.y = Input.GetAxisRaw("Vertical");
 
@@ -138,9 +138,24 @@ public class Player : MonoBehaviour
             //disable spriterenderer and collider so sound can play before death;
             if (health <= 0)
             {
-                
+                sr.enabled = false;
+                isDead = true;
+                moveVector = Vector2.zero;
+                gameObject.GetComponent<Collider2D>().enabled = false;
+                GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>().Load(1);
+                StartCoroutine(Die());
             }
         }
+    }
+
+    IEnumerator Die()
+    {
+        TMP_Text youDiedText = Instantiate(GameObject.FindGameObjectWithTag("Prefabs").GetComponent<Prefabs>().textPrefab, Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0, -50f, 0f), Quaternion.identity);
+        youDiedText.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
+        youDiedText.fontSize = 50;
+        youDiedText.text = "You Died";
+        yield return new WaitForSeconds(3f);
+        GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>().ChangeScene();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

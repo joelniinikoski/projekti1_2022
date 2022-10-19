@@ -13,7 +13,11 @@ public class Enemy1 : MonoBehaviour, IDamageable
     public float flashTime = 0.1f;
     public float destroyTime = 1f;
     [SerializeField] float damage = 5;
+    [SerializeField] float randomDirectionCooldownMin = 2f;
+    [SerializeField] float randomDirectionCooldownMax = 4f;
+    [SerializeField] float randomDirectionSpeedMultiplier = 10f;
 
+    float randomDirectionCooldown;
     Vector3 deathScale;
     float matTimer = 0f;
     Material originalMat;
@@ -35,7 +39,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
             deathSource = damageSource;
         }
         playerT = GameObject.FindGameObjectWithTag("Player").transform;
-
+        randomDirectionCooldown = Random.Range(randomDirectionCooldownMin, randomDirectionCooldownMax);
         rb = this.GetComponent<Rigidbody2D>();
         cl = this.GetComponent<Collider2D>();
         sr = this.GetComponent<SpriteRenderer>();
@@ -56,6 +60,10 @@ public class Enemy1 : MonoBehaviour, IDamageable
             {
                 matTimer -= Time.deltaTime;
             }
+            if (randomDirectionCooldown >= 0)
+            {
+                randomDirectionCooldown -= Time.deltaTime;
+            }
         }
     }
 
@@ -72,8 +80,17 @@ public class Enemy1 : MonoBehaviour, IDamageable
     {
         if (!isDead)
         {
-            direction = playerT.position - transform.position;
-            rb.AddForce(direction.normalized * speedTowardsPlayer, ForceMode2D.Impulse);
+            if (randomDirectionCooldown <= 0)
+            {
+                randomDirectionCooldown = Random.Range(randomDirectionCooldownMin, randomDirectionCooldownMax);
+                direction = Random.insideUnitCircle.normalized;
+                direction = direction.normalized * randomDirectionSpeedMultiplier;
+            } else
+            {
+                direction = playerT.position - transform.position;
+                direction = direction.normalized;
+            }
+            rb.AddForce(direction * speedTowardsPlayer, ForceMode2D.Impulse);
         }
     }
     public void TakeDamage(float dmg, float kb)
@@ -111,7 +128,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
             }
 
             //knockback
-            rb.AddForce(direction.normalized * kb * -speedTowardsPlayer, ForceMode2D.Impulse);
+            rb.AddForce((playerT.position - transform.position).normalized * kb * -1, ForceMode2D.Impulse);
         }
     }
     private IEnumerator Death(float animLength)
