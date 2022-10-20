@@ -650,6 +650,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3524756886665506829, guid: d69424063d9233d42ba33df33f985acd, type: 3}
+      propertyPath: hpBar
+      value: 
+      objectReference: {fileID: 1640658726}
     - target: {fileID: 1170272653333944368, guid: d69424063d9233d42ba33df33f985acd, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -11399,6 +11403,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1546682770915920812, guid: 96134d7b42eaeda41876ec63c07a6fc9, type: 3}
   m_PrefabInstance: {fileID: 5224418255968287070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1640658726 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6805621642699505943, guid: bdb39fca70afab943b0df97ab98b4f23, type: 3}
+  m_PrefabInstance: {fileID: 573408406806445658}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1801078673 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 310006375811394821, guid: bdb39fca70afab943b0df97ab98b4f23, type: 3}

@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] float damageTimerReset = 0.5f;
     [SerializeField] Material whiteMat;
     [SerializeField] float flashTime = 0.05f;
+    [SerializeField] Image hpBar;
 
-    Image hpBar;
     TrailRenderer tr;
     SpriteRenderer sr;
     Material defaultMat;
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         tr = gameObject.GetComponent<TrailRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         sr = gameObject.GetComponent<SpriteRenderer>();
-        hpBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<Image>();
         defaultMat = sr.material;
         startHealth = health;
     }
