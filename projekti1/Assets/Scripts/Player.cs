@@ -48,7 +48,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hpBar.fillAmount = health / startHealth;
+        if (hpBar)
+        {
+            hpBar.fillAmount = health / startHealth;
+        }
+        
         if (isDead) { return; }
         //i frames
         if (damageTimer > 0)

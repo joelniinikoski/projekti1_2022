@@ -24,9 +24,13 @@ public class Enemy1BossScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBarBack.transform.position = Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0f, 50f, 0f);
+        if (healthBarBack)
+        {
+            healthBarBack.transform.position = Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0f, 50f, 0f);
+            hpBar.fillAmount = health / startHealth;
+        }
         health = enemy1.health;
-        hpBar.fillAmount = health / startHealth;
+        
 
         if (health <= 0)
         {

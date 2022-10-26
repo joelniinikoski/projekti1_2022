@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1546682770915920812, guid: 96134d7b42eaeda41876ec63c07a6fc9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4038166596708137945, guid: 96134d7b42eaeda41876ec63c07a6fc9, type: 3}
       propertyPath: enemy1Active
@@ -369,10 +369,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6978067979126421386, guid: e0a7025b056ecfe42b334669d6d81c21, type: 3}
       propertyPath: m_Name
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 6978067979126421386, guid: e0a7025b056ecfe42b334669d6d81c21, type: 3}
-      propertyPath: m_TagString
       value: LoadScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -11270,6 +11266,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1319887758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1319887759}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1319887759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319887758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1361188827
 GameObject:
   m_ObjectHideFlags: 0
@@ -12376,7 +12403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b19b61a62d9b14dbbafe3d0131ade6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneID: 1
+  sceneID: 0
 --- !u!1 &2020670190
 GameObject:
   m_ObjectHideFlags: 0
@@ -14588,7 +14615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedTowardsPlayer: 0.3
-  health: 1000
+  health: 1
   damageSource: {fileID: 1361188828}
   deathSource: {fileID: 6336584709565918624}
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}

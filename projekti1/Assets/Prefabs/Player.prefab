@@ -285,12 +285,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a10f840ae957fc84da948bd706bb1f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.07
+  moveSpeed: 0.09
   health: 50
   damageSource: {fileID: 3554329909453505397}
   damageTimerReset: 0.3
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}
   flashTime: 0.07
+  hpBar: {fileID: 0}
   dashingPower: 50
   dashingTime: 0.05
   dashingCooldown: 0.8
@@ -397,8 +398,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -519755147
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Time: 0.3
   m_Parameters:

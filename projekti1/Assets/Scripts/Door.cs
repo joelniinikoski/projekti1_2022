@@ -13,12 +13,15 @@ public class Door : MonoBehaviour, IInteractable
         //change this to "if spawner in this room is inactive"
         if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
-            gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
+            if (doorOpen)
+            {
+                gameObject.GetComponent<SpriteRenderer>().sprite = doorOpen;
+            }
             if (activateSpawner)
             {
                 activateSpawner.SetActive(true);
             }
-            gameObject.GetComponentInChildren<AudioSource>().Play();
+            gameObject.GetComponentInChildren<AudioSource>()?.Play();
             Teleport(GameObject.FindGameObjectWithTag("Player"), teleport);
         }
     }
