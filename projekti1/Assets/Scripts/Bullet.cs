@@ -13,8 +13,20 @@ public class Bullet : MonoBehaviour
     [System.NonSerialized]
     public float bulletSpeed;
 
+    float damageLayer;
+    float ignoreLayer;
     [SerializeField] GameObject bulletDestroyed;
-    
+
+    public void SetDamageLayer(int i)
+    {
+        damageLayer = i;
+        if (i == 7)
+        {
+            ignoreLayer = 6;
+        }
+        else ignoreLayer = 7;
+    }
+
     private void Update()
     {
         if (timer <= 0f) {
@@ -25,12 +37,12 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == damageLayer)
         {
             IDamageable enemyScript = collision.gameObject.GetComponent<IDamageable>();
             enemyScript.TakeDamage(damage, kb);
         }
-        if (collision.gameObject.layer != 6 && collision.gameObject.layer != 9)
+        if (collision.gameObject.layer != 9 && collision.gameObject.layer != 8 && collision.gameObject.layer != ignoreLayer)
         {
             Destroy(Instantiate(bulletDestroyed, transform.position, transform.rotation), 1f);
             Destroy(gameObject);

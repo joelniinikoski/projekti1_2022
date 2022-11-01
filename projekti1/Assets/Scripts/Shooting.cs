@@ -13,8 +13,6 @@ public class Shooting : MonoBehaviour
 
     float coolDownTimer = 0f;
 
-    Vector2 mousePos;
-
     // Update is called once per frame
     void Update()
     {
@@ -44,5 +42,6 @@ public class Shooting : MonoBehaviour
         bulletScript.bulletSpeed = bulletSpeed;
         bulletScript.damage = bulletDmg;
         bulletScript.kb = bulletKb;
+        bulletScript.SetDamageLayer(7);
     }
 }

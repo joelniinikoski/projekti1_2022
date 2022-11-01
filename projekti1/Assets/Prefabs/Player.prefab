@@ -312,7 +312,7 @@ MonoBehaviour:
   bulletSpeed: 10
   coolDown: 0.4
   bulletDmg: 10
-  bulletKb: 20
+  bulletKb: 10
 --- !u!95 &6889297932972947120
 Animator:
   serializedVersion: 4

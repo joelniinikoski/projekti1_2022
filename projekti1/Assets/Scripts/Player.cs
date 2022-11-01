@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] float moveSpeed;
     [SerializeField] float health;
@@ -117,15 +117,18 @@ public class Player : MonoBehaviour
         damageTimer = dashingTime;
         // ignore collision between enemy layer (7) and player layer (6)
         Physics2D.IgnoreLayerCollision(6, 7, true);
+        // ignore collision between bullet (8) and player (6)
+        Physics2D.IgnoreLayerCollision(6, 8, true);
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
         isDashing = false;
         Physics2D.IgnoreLayerCollision(6, 7, false);
+        Physics2D.IgnoreLayerCollision(6, 8, false);
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(float dmg, float kb)
     {
         if (damageTimer <= 0) {
 

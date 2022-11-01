@@ -2,6 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class EnemyObject
+{
+    public GameObject enemy;
+    public bool enemyActive;
+    public int enemyStartBatch;
+    public float enemyInterval;
+    public int enemyAmount;
+
+    public EnemyObject(GameObject enemy, bool enemyActive, int enemyStartBatch, float enemyInterval, int enemyAmount)
+    {
+        this.enemy = enemy;
+        this.enemyActive = enemyActive;
+        this.enemyStartBatch = enemyStartBatch;
+        this.enemyInterval = enemyInterval;
+        this.enemyAmount = enemyAmount;
+    }
+}
+
 public class Spawner : MonoBehaviour
 {
     [Header("Enemy1")]
@@ -11,6 +29,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] float enemy1Interval = 5f;
     [SerializeField] int enemy1Amount;
 
+    [Header("Enemy2")]
+    [SerializeField] GameObject enemy2;
+    [SerializeField] bool enemy2Active;
+    [SerializeField] int enemy2StartBatch;
+    [SerializeField] float enemy2Interval = 5f;
+    [SerializeField] int enemy2Amount;
+
     [Header("General")]
     [SerializeField] bool startingBatch;
     [SerializeField] Vector2 spawnAreaMin;
@@ -19,36 +44,48 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        List<EnemyObject> enemies = new List<EnemyObject>();
+        enemies.Add(new EnemyObject(enemy1, enemy1Active, enemy1StartBatch, enemy1Interval, enemy1Amount));
+        enemies.Add(new EnemyObject(enemy2, enemy2Active, enemy2StartBatch, enemy2Interval, enemy2Amount));
+
         if (startingBatch)
         {
-            if (enemy1Active)
+            foreach (EnemyObject e in enemies)
             {
-                StartSpawn(enemy1StartBatch, enemy1);
+                StartSpawn(e);
             }
         }
-        if (enemy1Active)
+        foreach (EnemyObject e in enemies)
         {
-            StartCoroutine(spawnEnemy(enemy1, enemy1Interval, false));
+            if (e.enemyActive)
+            {
+                StartCoroutine(SpawnEnemy(e, false));
+            }
         }
     }
 
-    private void StartSpawn(int enemyStartBatchSize, GameObject enemyPrefab)
+    private void StartSpawn(EnemyObject e)
     {
-        for (int i = 0; i < enemyStartBatchSize; i++)
+        for (int i = 0; i < e.enemyStartBatch; i++)
         {
-            StartCoroutine(spawnEnemy(enemyPrefab, 0, true));
+            StartCoroutine(SpawnEnemy(e, true));
         }
     }
 
-    private IEnumerator spawnEnemy(GameObject enemy, float interval, bool start)
+    private IEnumerator SpawnEnemy(EnemyObject e, bool start)
     {
+        //check if starting, then instantly spawn
+        float interval;
+        if (start) interval = 0;
+        else interval = e.enemyInterval;
+
         yield return new WaitForSeconds(interval);
-        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x), Random.Range(spawnAreaMin.y, spawnAreaMax.y)), Quaternion.identity);
+        GameObject newEnemy = Instantiate(e.enemy, new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x), Random.Range(spawnAreaMin.y, spawnAreaMax.y)), Quaternion.identity);
         StartCoroutine(enemyFadeIn(newEnemy, 1f));
-        enemy1Amount -= 1;
-        if (enemy1Amount > 0 && !start)
+        e.enemyAmount -= 1;
+        if (e.enemyAmount > 0 && !start)
         {
-            StartCoroutine(spawnEnemy(enemy, interval, false));
+            StartCoroutine(SpawnEnemy(e, false));
         }
     }
 

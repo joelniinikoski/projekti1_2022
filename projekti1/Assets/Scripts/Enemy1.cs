@@ -32,12 +32,16 @@ public class Enemy1 : MonoBehaviour, IDamageable
     Vector2 direction;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
-        if (!deathSource)
+        if (damageSource)
         {
-            deathSource = damageSource;
+            if (!deathSource)
+            {
+                deathSource = damageSource;
+            }
         }
+            
         playerT = GameObject.FindGameObjectWithTag("Player").transform;
         randomDirectionCooldown = Random.Range(randomDirectionCooldownMin, randomDirectionCooldownMax);
         rb = this.GetComponent<Rigidbody2D>();
@@ -48,7 +52,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
         originalMat = sr.material;
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (!isDead)
         {
@@ -73,9 +77,13 @@ public class Enemy1 : MonoBehaviour, IDamageable
         {
             transform.localScale = deathScale;
         }
+        else
+        {
+            if (direction.x < 0) sr.flipX = true;
+            else sr.flipX = false;
+        }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!isDead)
@@ -103,7 +111,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
    
         if (health <= 0)
         {
-            if (deathSource.isActiveAndEnabled)
+            if (deathSource && deathSource.isActiveAndEnabled)
             {
                 deathSource.pitch = Random.Range(0.8f, 1.2f);
                 deathSource.Play();
@@ -121,7 +129,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
             Destroy(gameObject, destroyTime);
         } else
         {
-            if (damageSource.isActiveAndEnabled)
+            if (damageSource && damageSource.isActiveAndEnabled)
             {
                 damageSource.pitch = Random.Range(0.8f, 1.2f);
                 damageSource.Play();
@@ -151,7 +159,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
         if (collision.gameObject.layer == 6)
         {
             Player playerScript = collision.gameObject.GetComponent<Player>();
-            playerScript.TakeDamage(damage);
+            playerScript.TakeDamage(damage, 0f);
         }
     }
 }
