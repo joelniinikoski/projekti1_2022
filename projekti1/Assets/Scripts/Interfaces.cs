@@ -10,3 +10,8 @@ public interface IInteractable
 {
     void Interact();
 }
+
+public interface IHasOrigin
+{
+    void SetOrigin(Spawner origin);
+}

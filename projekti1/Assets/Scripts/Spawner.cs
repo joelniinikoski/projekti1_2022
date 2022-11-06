@@ -40,6 +40,10 @@ public class Spawner : MonoBehaviour
     [SerializeField] bool startingBatch;
     [SerializeField] Vector2 spawnAreaMin;
     [SerializeField] Vector2 spawnAreaMax;
+    [SerializeField] Door activateDoor;
+
+    [System.NonSerialized]
+    public int enemiesAlive = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -64,6 +68,21 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (activateDoor)
+        {
+            if (enemiesAlive == 0)
+            {
+                activateDoor.doorActive = true;
+            }
+            else
+            {
+                activateDoor.doorActive = false;
+            }
+        }
+    }
+
     private void StartSpawn(EnemyObject e)
     {
         for (int i = 0; i < e.enemyStartBatch; i++)
@@ -81,6 +100,8 @@ public class Spawner : MonoBehaviour
 
         yield return new WaitForSeconds(interval);
         GameObject newEnemy = Instantiate(e.enemy, new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x), Random.Range(spawnAreaMin.y, spawnAreaMax.y)), Quaternion.identity);
+        newEnemy.GetComponent<IHasOrigin>().SetOrigin(this);
+        enemiesAlive += 1;
         StartCoroutine(enemyFadeIn(newEnemy, 1f));
         e.enemyAmount -= 1;
         if (e.enemyAmount > 0 && !start)

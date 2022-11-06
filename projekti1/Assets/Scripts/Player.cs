@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] float flashTime = 0.05f;
     [SerializeField] Image hpBar;
 
+    Prefabs prefabs;
     TrailRenderer tr;
     SpriteRenderer sr;
     Material defaultMat;
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] float dashingTime = 0.2f;
     [SerializeField] float dashingCooldown = 1f;
 
+    GameObject canvas;
+
     float matTimer = 0f;
     float damageTimer = 0f;
     Vector2 moveVector;
@@ -37,6 +40,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        canvas = GameObject.Find("Canvas");
+        prefabs = GameObject.FindGameObjectWithTag("Prefabs").GetComponent<Prefabs>();
         animator = gameObject.GetComponent<Animator>();
         tr = gameObject.GetComponent<TrailRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -148,7 +153,7 @@ public class Player : MonoBehaviour, IDamageable
                 isDead = true;
                 moveVector = Vector2.zero;
                 gameObject.GetComponent<Collider2D>().enabled = false;
-                GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>().Load(1);
+                GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>().Load(0);
                 StartCoroutine(Die());
             }
         }
@@ -156,10 +161,13 @@ public class Player : MonoBehaviour, IDamageable
 
     IEnumerator Die()
     {
-        TMP_Text youDiedText = Instantiate(GameObject.FindGameObjectWithTag("Prefabs").GetComponent<Prefabs>().textPrefab, Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0, -50f, 0f), Quaternion.identity);
-        youDiedText.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform);
-        youDiedText.fontSize = 50;
-        youDiedText.text = "You Died";
+        if (prefabs && canvas) {
+            TMP_Text youDiedText = Instantiate(prefabs.textPrefab, Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0, -50f, 0f), Quaternion.identity);
+            // GameObject.Find is slow, but ok in this case since only done once
+            youDiedText.transform.SetParent(canvas.transform);
+            youDiedText.fontSize = 50;
+            youDiedText.text = "You Died";
+        }
         yield return new WaitForSeconds(3f);
         GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>().ChangeScene();
     }

@@ -19,7 +19,7 @@ public class Enemy2 : Enemy1
     IEnumerator Shoot()
     {
         yield return new WaitForSeconds(Random.Range(shootCooldownMin, shootCooldownMax));
-        if (!base.isDead)
+        if (!base.isDead && Vector3.Distance(base.playerT.position, transform.position) < aggroDistance)
         {
             Vector3 dir = GameObject.FindGameObjectWithTag("Player").transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -32,7 +32,7 @@ public class Enemy2 : Enemy1
             bulletScript.damage = arrowDamage;
             bulletScript.kb = 0f;
             bulletScript.SetDamageLayer(6);
-            StartCoroutine(Shoot());
         }
+        StartCoroutine(Shoot());
     }
 }

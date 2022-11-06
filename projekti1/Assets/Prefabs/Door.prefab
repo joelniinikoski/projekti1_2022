@@ -231,6 +231,7 @@ MonoBehaviour:
   doorOpen: {fileID: -2136481054, guid: 84e21a0cd689bb740aa34c2d8ae47b0c, type: 3}
   teleport: {fileID: 0}
   activateSpawner: {fileID: 0}
+  doorActive: 1
 --- !u!61 &6850564247024349273
 BoxCollider2D:
   m_ObjectHideFlags: 0

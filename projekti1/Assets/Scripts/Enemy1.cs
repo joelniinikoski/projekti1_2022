@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour, IDamageable
+public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin
 {
     public float speedTowardsPlayer;
     public float health = 100;
-    Transform playerT;
+    [System.NonSerialized]
+    public Transform playerT;
     public AudioSource damageSource;
     public AudioSource deathSource;
     public Material whiteMat;
@@ -16,6 +17,7 @@ public class Enemy1 : MonoBehaviour, IDamageable
     [SerializeField] float randomDirectionCooldownMin = 2f;
     [SerializeField] float randomDirectionCooldownMax = 4f;
     [SerializeField] float randomDirectionSpeedMultiplier = 10f;
+    public float aggroDistance = 10f;
 
     float randomDirectionCooldown;
     Vector3 deathScale;
@@ -28,6 +30,9 @@ public class Enemy1 : MonoBehaviour, IDamageable
     SpriteRenderer sr;
     Collider2D cl;
     Animator animator;
+
+    [System.NonSerialized]
+    public Spawner origin;
 
     Vector2 direction;
 
@@ -93,10 +98,13 @@ public class Enemy1 : MonoBehaviour, IDamageable
                 randomDirectionCooldown = Random.Range(randomDirectionCooldownMin, randomDirectionCooldownMax);
                 direction = Random.insideUnitCircle.normalized;
                 direction = direction.normalized * randomDirectionSpeedMultiplier;
-            } else
+            } else if (Vector3.Distance(playerT.position, transform.position) < aggroDistance)
             {
                 direction = playerT.position - transform.position;
                 direction = direction.normalized;
+            } else
+            {
+                direction = Vector3.zero;
             }
             rb.AddForce(direction * speedTowardsPlayer, ForceMode2D.Impulse);
         }
@@ -116,16 +124,17 @@ public class Enemy1 : MonoBehaviour, IDamageable
                 deathSource.pitch = Random.Range(0.8f, 1.2f);
                 deathSource.Play();
             }
-                
-
             //disable spriterenderer and collider so sound can play before death;
-
             cl.enabled = false;
             isDead = true;
             //animator.SetTrigger("isDead");
             StartCoroutine(Death(0.5f));
             rb.velocity = Vector2.zero;
-
+            // if gameobject originates from spawner:
+            if (origin)
+            {
+                origin.enemiesAlive -= 1;
+            }
             Destroy(gameObject, destroyTime);
         } else
         {
@@ -139,6 +148,12 @@ public class Enemy1 : MonoBehaviour, IDamageable
             rb.AddForce((playerT.position - transform.position).normalized * kb * -1, ForceMode2D.Impulse);
         }
     }
+
+    public void SetOrigin(Spawner origin)
+    {
+        this.origin = origin;
+    }
+
     private IEnumerator Death(float animLength)
     {
         float startAnimLength = animLength;

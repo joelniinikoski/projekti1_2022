@@ -8,10 +8,12 @@ public class Door : MonoBehaviour, IInteractable
     [SerializeField] Transform teleport;
     [SerializeField] GameObject activateSpawner;
 
+    public bool doorActive = true;
+
     public void Interact()
     {
         //change this to "if spawner in this room is inactive"
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        if (doorActive)
         {
             if (doorOpen)
             {
