@@ -11,6 +11,7 @@ public class Enemy1BossScript : MonoBehaviour
 
     float startHealth;
     float health;
+    float prevHealth;
     Image hpBar;
     Enemy1 enemy1;
 
@@ -30,18 +31,19 @@ public class Enemy1BossScript : MonoBehaviour
             hpBar.fillAmount = health / startHealth;
         }
         health = enemy1.health;
-        
 
-        if (health <= 0)
+        if (health <= 0 && prevHealth > 0)
         {
             levelEndDoor.SetActive(true);
             Destroy(destroySpawner);
             Destroy(healthBarBack, 1f);
+            EventManager.Instance.BossHasDied();
             foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
                 enemy.GetComponentInChildren<AudioSource>().enabled = false;
                 enemy.GetComponent<IDamageable>().TakeDamage(9999999999f, 0f);
             }
         }
+        prevHealth = health;
     }
 }

@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4e31bc357b43f2743815d057f00cd1e1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e890f2e35919b74695bd37bf8db7384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedTowardsPlayer: 0.35
+  speedTowardsPlayer: 0.3
   health: 30
   damageSource: {fileID: 6336584708140656260}
   deathSource: {fileID: 0}
@@ -259,7 +259,8 @@ MonoBehaviour:
   damage: 5
   randomDirectionCooldownMin: 2
   randomDirectionCooldownMax: 4
-  randomDirectionSpeedMultiplier: 40
+  randomDirectionSpeedMultiplier: 30
+  aggroDistance: 10
 --- !u!50 &6336584709183652280
 Rigidbody2D:
   serializedVersion: 4

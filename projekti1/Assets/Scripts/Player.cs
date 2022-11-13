@@ -29,8 +29,6 @@ public class Player : MonoBehaviour, IDamageable
     [SerializeField] float dashingTime = 0.2f;
     [SerializeField] float dashingCooldown = 1f;
 
-    GameObject canvas;
-
     float matTimer = 0f;
     float damageTimer = 0f;
     Vector2 moveVector;
@@ -40,8 +38,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        canvas = GameObject.Find("Canvas");
-        prefabs = GameObject.FindGameObjectWithTag("Prefabs").GetComponent<Prefabs>();
         animator = gameObject.GetComponent<Animator>();
         tr = gameObject.GetComponent<TrailRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -161,13 +157,7 @@ public class Player : MonoBehaviour, IDamageable
 
     IEnumerator Die()
     {
-        if (prefabs && canvas) {
-            TMP_Text youDiedText = Instantiate(prefabs.textPrefab, Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0, -50f, 0f), Quaternion.identity);
-            // GameObject.Find is slow, but ok in this case since only done once
-            youDiedText.transform.SetParent(canvas.transform);
-            youDiedText.fontSize = 50;
-            youDiedText.text = "You Died";
-        }
+        EventManager.Instance.PlayerHasDied();
         yield return new WaitForSeconds(3f);
         GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>().ChangeScene();
     }
