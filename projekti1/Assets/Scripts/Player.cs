@@ -36,8 +36,20 @@ public class Player : MonoBehaviour, IDamageable
     bool isDead = false;
     HashSet<GameObject> interactables = new HashSet<GameObject>();
 
+    private void OnEnable()
+    {
+        EventManager.OnPlayerLevelUp += UpdateStats;
+    }
+    private void OnDisable()
+    {
+        EventManager.OnPlayerLevelUp -= UpdateStats;
+    }
+
     private void Start()
     {
+        if (!PlayerPrefs.HasKey("PlayerSpeed")) PlayerPrefs.SetFloat("PlayerSpeed", moveSpeed);
+        else moveSpeed = PlayerPrefs.GetFloat("PlayerSpeed");
+
         animator = gameObject.GetComponent<Animator>();
         tr = gameObject.GetComponent<TrailRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -49,6 +61,7 @@ public class Player : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(moveSpeed);
         if (hpBar)
         {
             hpBar.fillAmount = health / startHealth;
@@ -158,6 +171,7 @@ public class Player : MonoBehaviour, IDamageable
     IEnumerator Die()
     {
         EventManager.Instance.PlayerHasDied();
+        PlayerPrefs.DeleteAll();
         yield return new WaitForSeconds(3f);
         GameObject.FindGameObjectWithTag("LoadScene").GetComponent<LoadScene>().ChangeScene();
     }
@@ -168,6 +182,11 @@ public class Player : MonoBehaviour, IDamageable
         {
             interactables.Add(collision.gameObject);
         }
+    }
+
+    void UpdateStats()
+    {
+        moveSpeed = PlayerPrefs.GetFloat("PlayerSpeed");
     }
 
     private void OnTriggerExit2D(Collider2D collision)

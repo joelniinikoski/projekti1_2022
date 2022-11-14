@@ -62,10 +62,9 @@ public class UISystem : MonoBehaviour
             button.onClick.AddListener(LevelButtonAction);
             void LevelButtonAction()
             {
-                //PlayerPrefs.SetFloat(currentItem.Item2, PlayerPrefs.GetFloat(currentItem.Item2) * currentItem.Item3);
-                PlayerPrefs.SetFloat(currentItem.Item2, 0.69f);
-                Debug.Log(PlayerPrefs.GetFloat(currentItem.Item2));
+                PlayerPrefs.SetFloat(currentItem.Item2, PlayerPrefs.GetFloat(currentItem.Item2) * currentItem.Item3);
                 Time.timeScale = 1;
+                EventManager.Instance.PlayerHasLeveledUp();
             }
         }
         StartCoroutine(WaitUntilChosenThenDestroyButtons(instantiatedButtons));

@@ -13,6 +13,24 @@ public class Shooting : MonoBehaviour
 
     float coolDownTimer = 0f;
 
+    private void OnEnable()
+    {
+        EventManager.OnPlayerLevelUp += UpdateStats;
+    }
+    private void OnDisable()
+    {
+        EventManager.OnPlayerLevelUp -= UpdateStats;
+    }
+
+    private void Start()
+    {
+        if (!PlayerPrefs.HasKey("BulletPower")) PlayerPrefs.SetFloat("BulletPower", bulletDmg);
+        else bulletDmg = PlayerPrefs.GetFloat("BulletPower");
+
+        if (!PlayerPrefs.HasKey("BulletSpeed")) PlayerPrefs.SetFloat("BulletSpeed", bulletSpeed);
+        else bulletSpeed = PlayerPrefs.GetFloat("BulletSpeed");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -43,5 +61,11 @@ public class Shooting : MonoBehaviour
         bulletScript.damage = bulletDmg;
         bulletScript.kb = bulletKb;
         bulletScript.SetDamageLayer(7);
+    }
+
+    void UpdateStats()
+    {
+        bulletSpeed = PlayerPrefs.GetFloat("BulletSpeed");
+        bulletDmg = PlayerPrefs.GetFloat("BulletPower");
     }
 }

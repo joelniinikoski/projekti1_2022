@@ -10,6 +10,9 @@ public class EventManager : MonoBehaviour
     public delegate void BossDeath();
     public static event BossDeath OnBossDeath;
 
+    public delegate void LevelUp();
+    public static event LevelUp OnPlayerLevelUp;
+
     public static EventManager Instance;
 
     private void Awake()
@@ -25,5 +28,10 @@ public class EventManager : MonoBehaviour
     public void BossHasDied()
     {
         OnBossDeath?.Invoke();
+    }
+
+    public void PlayerHasLeveledUp()
+    {
+        OnPlayerLevelUp?.Invoke();
     }
 }
