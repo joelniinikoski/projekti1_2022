@@ -45,7 +45,10 @@ public class UISystem : MonoBehaviour
             //("Seen Name", "Player Pref Key", "Increase magnitude")
             ("Bullet Speed", "BulletSpeed", 1.2f),
             ("Bullet Power", "BulletPower", 1.2f),
-            ("Player Speed", "PlayerSpeed", 1.2f)
+            ("Player Speed", "PlayerSpeed", 1.5f),
+            ("Dashing Power", "DashingPower", 1.2f),
+            ("Dashing Cooldown", "DashingCooldown", 0.90f),
+            ("Reload Speed", "ReloadSpeed", 0.90f)
         };
         List<(string, string, float)> used = new List<(string, string, float)>();
 

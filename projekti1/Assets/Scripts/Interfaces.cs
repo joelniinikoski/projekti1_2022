@@ -10,6 +10,10 @@ public interface IInteractable
 {
     void Interact();
 }
+public interface IHasHealth
+{
+    float GetHealth();
+}
 
 public interface IHasOrigin
 {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin
+public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin, IHasHealth
 {
     public float speedTowardsPlayer;
     public float health = 100;
@@ -147,6 +147,11 @@ public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin
             //knockback
             rb.AddForce((playerT.position - transform.position).normalized * kb * -1, ForceMode2D.Impulse);
         }
+    }
+
+    public float GetHealth()
+    {
+        return health;
     }
 
     public void SetOrigin(Spawner origin)

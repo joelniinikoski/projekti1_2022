@@ -26,9 +26,10 @@ public class Shooting : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("BulletPower")) PlayerPrefs.SetFloat("BulletPower", bulletDmg);
         else bulletDmg = PlayerPrefs.GetFloat("BulletPower");
-
         if (!PlayerPrefs.HasKey("BulletSpeed")) PlayerPrefs.SetFloat("BulletSpeed", bulletSpeed);
         else bulletSpeed = PlayerPrefs.GetFloat("BulletSpeed");
+        if (!PlayerPrefs.HasKey("ReloadSpeed")) PlayerPrefs.SetFloat("ReloadSpeed", coolDown);
+        else coolDown = PlayerPrefs.GetFloat("ReloadSpeed");
     }
 
     // Update is called once per frame
@@ -67,5 +68,6 @@ public class Shooting : MonoBehaviour
     {
         bulletSpeed = PlayerPrefs.GetFloat("BulletSpeed");
         bulletDmg = PlayerPrefs.GetFloat("BulletPower");
+        coolDown = PlayerPrefs.GetFloat("ReloadSpeed");
     }
 }

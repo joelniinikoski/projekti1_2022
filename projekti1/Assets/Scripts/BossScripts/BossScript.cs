@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Enemy1BossScript : MonoBehaviour
+public class BossScript : MonoBehaviour
 {
     [SerializeField] GameObject destroySpawner;
     [SerializeField] GameObject levelEndDoor;
@@ -13,24 +13,24 @@ public class Enemy1BossScript : MonoBehaviour
     float health;
     float prevHealth;
     Image hpBar;
-    Enemy1 enemy1;
+    IHasHealth boss;
 
     private void Start()
     {
-        enemy1 = gameObject.GetComponent<Enemy1>();
-        startHealth = enemy1.health;
+        boss = gameObject.GetComponent<IHasHealth>();
+        startHealth = boss.GetHealth();
         hpBar = healthBarBack.transform.GetChild(0).GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        health = boss.GetHealth();
         if (healthBarBack)
         {
             healthBarBack.transform.position = Camera.main.WorldToScreenPoint(transform.position) + new Vector3(0f, 50f, 0f);
             hpBar.fillAmount = health / startHealth;
         }
-        health = enemy1.health;
 
         if (health <= 0 && prevHealth > 0)
         {

@@ -49,6 +49,10 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (!PlayerPrefs.HasKey("PlayerSpeed")) PlayerPrefs.SetFloat("PlayerSpeed", moveSpeed);
         else moveSpeed = PlayerPrefs.GetFloat("PlayerSpeed");
+        if (!PlayerPrefs.HasKey("DashingPower")) PlayerPrefs.SetFloat("DashingPower", dashingPower);
+        else dashingPower = PlayerPrefs.GetFloat("DashingPower");
+        if (!PlayerPrefs.HasKey("DashingCooldown")) PlayerPrefs.SetFloat("DashingCooldown", dashingCooldown);
+        else dashingCooldown = PlayerPrefs.GetFloat("DashingCooldown");
 
         animator = gameObject.GetComponent<Animator>();
         tr = gameObject.GetComponent<TrailRenderer>();
@@ -61,7 +65,6 @@ public class Player : MonoBehaviour, IDamageable
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(moveSpeed);
         if (hpBar)
         {
             hpBar.fillAmount = health / startHealth;
@@ -187,6 +190,8 @@ public class Player : MonoBehaviour, IDamageable
     void UpdateStats()
     {
         moveSpeed = PlayerPrefs.GetFloat("PlayerSpeed");
+        dashingPower = PlayerPrefs.GetFloat("DashingPower");
+        dashingCooldown = PlayerPrefs.GetFloat("DashingCooldown");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
