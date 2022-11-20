@@ -17,6 +17,10 @@ public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin, IHasHealth
     [SerializeField] float randomDirectionCooldownMin = 2f;
     [SerializeField] float randomDirectionCooldownMax = 4f;
     [SerializeField] float randomDirectionSpeedMultiplier = 10f;
+
+    [SerializeField] GameObject heart;
+    [SerializeField] float heartDropRate = 0.1f;
+
     public float aggroDistance = 10f;
 
     float randomDirectionCooldown;
@@ -135,6 +139,13 @@ public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin, IHasHealth
             {
                 origin.enemiesAlive -= 1;
             }
+
+            //spawn a heart with some probability
+            if (heart && Random.Range(0f,1f) <= heartDropRate)
+            {
+                Instantiate(heart, transform.position, Quaternion.identity);
+            }
+            
             Destroy(gameObject, destroyTime);
         } else
         {

@@ -149,14 +149,16 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (damageTimer <= 0) {
 
-            sr.material = whiteMat;
-            matTimer = flashTime;
-            damageTimer = damageTimerReset;
-
             health -= dmg;
 
-            damageSource.pitch = Random.Range(0.8f, 1.2f);
-            damageSource.Play();
+            if (dmg > 0) {
+                sr.material = whiteMat;
+                matTimer = flashTime;
+                damageTimer = damageTimerReset;
+
+                damageSource.pitch = Random.Range(0.8f, 1.2f);
+                damageSource.Play();
+            }
 
             //disable spriterenderer and collider so sound can play before death;
             if (health <= 0)

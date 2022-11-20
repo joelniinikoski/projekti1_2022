@@ -14595,6 +14595,8 @@ MonoBehaviour:
   randomDirectionCooldownMin: 2
   randomDirectionCooldownMax: 4
   randomDirectionSpeedMultiplier: 10
+  heart: {fileID: 0}
+  heartDropRate: 0.1
   aggroDistance: 10
 --- !u!50 &6336584708497607324
 Rigidbody2D:

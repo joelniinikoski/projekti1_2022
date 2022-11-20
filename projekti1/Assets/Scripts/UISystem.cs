@@ -43,12 +43,12 @@ public class UISystem : MonoBehaviour
         List<(string, string, float)> options = new List<(string, string, float)>()
         {
             //("Seen Name", "Player Pref Key", "Increase magnitude")
-            ("Bullet Speed", "BulletSpeed", 1.2f),
+            ("Bullet Speed", "BulletSpeed", 1.5f),
             ("Bullet Power", "BulletPower", 1.2f),
-            ("Player Speed", "PlayerSpeed", 1.5f),
+            ("Player Speed", "PlayerSpeed", 1.2f),
             ("Dashing Power", "DashingPower", 1.2f),
-            ("Dashing Cooldown", "DashingCooldown", 0.90f),
-            ("Reload Speed", "ReloadSpeed", 0.90f)
+            ("Dashing Cooldown", "DashingCooldown", 0.80f),
+            ("Reload Speed", "ReloadSpeed", 0.80f)
         };
         List<(string, string, float)> used = new List<(string, string, float)>();
 
