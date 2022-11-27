@@ -293,7 +293,7 @@ MonoBehaviour:
   flashTime: 0.07
   hpBar: {fileID: 0}
   dashingPower: 25
-  dashingTime: 0.1
+  dashingTime: 0.12
   dashingCooldown: 0.5
 --- !u!114 &4141810059334382470
 MonoBehaviour:

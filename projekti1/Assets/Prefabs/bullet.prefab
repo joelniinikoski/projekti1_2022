@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5595691311015844837}
   - component: {fileID: 6074133274407276899}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,8 +99,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e27b6d124a0c1f4094d837e2906a905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
-  kb: 40
   bulletDestroyed: {fileID: 8876025661995079173, guid: 2b2370a9456ed1d4d8896b04086b3cfa, type: 3}
 --- !u!61 &5595691311015844837
 BoxCollider2D:
@@ -126,7 +124,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
 --- !u!50 &6074133274407276899
 Rigidbody2D:

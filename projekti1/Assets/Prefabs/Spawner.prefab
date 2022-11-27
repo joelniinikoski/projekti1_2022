@@ -54,6 +54,12 @@ MonoBehaviour:
   enemy2StartBatch: 0
   enemy2Interval: 5
   enemy2Amount: 0
-  startingBatch: 0
+  enemy3: {fileID: 3297020318383280908, guid: 60a8853b0e437f54c8115a78dcab69c6, type: 3}
+  enemy3Active: 0
+  enemy3StartBatch: 0
+  enemy3Interval: 5
+  enemy3Amount: 0
+  startingBatch: 1
   spawnAreaMin: {x: 0, y: 0}
   spawnAreaMax: {x: 0, y: 0}
+  activateDoor: {fileID: 0}

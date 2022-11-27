@@ -29,10 +29,13 @@ public class UISystem : MonoBehaviour
 
     void YouDiedText()
     {
-        TMP_Text youDiedText = Instantiate(textPrefab, Camera.main.WorldToScreenPoint(Camera.main.transform.position) + new Vector3(0, -50f, 0f), Quaternion.identity);
-        youDiedText.transform.SetParent(canvas.transform);
-        youDiedText.fontSize = 50;
-        youDiedText.text = "You Died";
+        if (canvas)
+        {
+            TMP_Text youDiedText = Instantiate(textPrefab, Camera.main.WorldToScreenPoint(Camera.main.transform.position) + new Vector3(0, -50f, 0f), Quaternion.identity);
+            youDiedText.transform.SetParent(canvas.transform);
+            youDiedText.fontSize = 50;
+            youDiedText.text = "You Died";
+        }
     }
 
     void LevelUpScreen()
@@ -43,12 +46,13 @@ public class UISystem : MonoBehaviour
         List<(string, string, float)> options = new List<(string, string, float)>()
         {
             //("Seen Name", "Player Pref Key", "Increase magnitude")
-            ("Bullet Speed", "BulletSpeed", 1.5f),
-            ("Bullet Power", "BulletPower", 1.2f),
-            ("Player Speed", "PlayerSpeed", 1.2f),
-            ("Dashing Power", "DashingPower", 1.2f),
-            ("Dashing Cooldown", "DashingCooldown", 0.80f),
-            ("Reload Speed", "ReloadSpeed", 0.80f)
+            ("Bullet Speed", "BulletSpeed", 2f),
+            ("Bullet Power", "BulletPower", 1.5f),
+            ("Player Speed", "PlayerSpeed", 1.5f),
+            ("Dashing Power", "DashingPower", 1.5f),
+            ("Dashing Cooldown", "DashingCooldown", 0.75f),
+            ("Reload Speed", "ReloadSpeed", 0.75f),
+            ("Bullet Knockback", "BulletKnockback", 2f)
         };
         List<(string, string, float)> used = new List<(string, string, float)>();
 

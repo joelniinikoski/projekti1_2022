@@ -36,6 +36,13 @@ public class Spawner : MonoBehaviour
     [SerializeField] float enemy2Interval = 5f;
     [SerializeField] int enemy2Amount;
 
+    [Header("Enemy3")]
+    [SerializeField] GameObject enemy3;
+    [SerializeField] bool enemy3Active;
+    [SerializeField] int enemy3StartBatch;
+    [SerializeField] float enemy3Interval = 5f;
+    [SerializeField] int enemy3Amount;
+
     [Header("General")]
     [SerializeField] bool startingBatch;
     [SerializeField] Vector2 spawnAreaMin;
@@ -51,6 +58,7 @@ public class Spawner : MonoBehaviour
         List<EnemyObject> enemies = new List<EnemyObject>();
         enemies.Add(new EnemyObject(enemy1, enemy1Active, enemy1StartBatch, enemy1Interval, enemy1Amount));
         enemies.Add(new EnemyObject(enemy2, enemy2Active, enemy2StartBatch, enemy2Interval, enemy2Amount));
+        enemies.Add(new EnemyObject(enemy3, enemy3Active, enemy3StartBatch, enemy3Interval, enemy3Amount));
 
         if (startingBatch)
         {
