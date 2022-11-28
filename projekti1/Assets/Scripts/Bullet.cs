@@ -17,6 +17,15 @@ public class Bullet : MonoBehaviour
     float ignoreLayer;
     [SerializeField] GameObject bulletDestroyed;
 
+    private void OnEnable()
+    {
+        EventManager.OnPlayerDeath += DestroyBullet;
+    }
+    private void OnDisable()
+    {
+        EventManager.OnPlayerDeath -= DestroyBullet;
+    }
+
     public void SetDamageLayer(int i)
     {
         damageLayer = i;
@@ -44,8 +53,13 @@ public class Bullet : MonoBehaviour
         }
         if (collision.gameObject.layer != 9 && collision.gameObject.layer != 8 && collision.gameObject.layer != ignoreLayer)
         {
-            Destroy(Instantiate(bulletDestroyed, transform.position, transform.rotation), 1f);
-            Destroy(gameObject);
+            DestroyBullet();
         }
+    }
+
+    void DestroyBullet()
+    {
+        Destroy(Instantiate(bulletDestroyed, transform.position, transform.rotation), 1f);
+        Destroy(gameObject);
     }
 }
