@@ -7,15 +7,20 @@ public class BossScript : MonoBehaviour
 {
     [SerializeField] GameObject destroySpawner;
     [SerializeField] GameObject levelEndDoor;
-    [SerializeField] GameObject healthBarBack;
+    [SerializeField] public GameObject healthBarBack;
 
-    float startHealth;
-    float health;
-    float prevHealth;
-    Image hpBar;
-    IHasHealth boss;
+    [System.NonSerialized]
+    public float startHealth;
+    [System.NonSerialized]
+    public float health;
+    [System.NonSerialized]
+    public float prevHealth;
+    [System.NonSerialized]
+    public Image hpBar;
+    [System.NonSerialized]
+    public IHasHealth boss;
 
-    private void Start()
+    public virtual void Start()
     {
         boss = gameObject.GetComponent<IHasHealth>();
         startHealth = boss.GetHealth();
@@ -23,7 +28,7 @@ public class BossScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         health = boss.GetHealth();
         if (healthBarBack)
@@ -34,7 +39,10 @@ public class BossScript : MonoBehaviour
 
         if (health <= 0 && prevHealth > 0)
         {
-            levelEndDoor.SetActive(true);
+            if (levelEndDoor)
+            {
+                levelEndDoor.SetActive(true);
+            }
             Destroy(destroySpawner);
             Destroy(healthBarBack, 1f);
             EventManager.Instance.BossHasDied();

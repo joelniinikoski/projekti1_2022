@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 6336584709183652280}
   - component: {fileID: 6336584709183652281}
   m_Layer: 7
-  m_Name: Enemy1
+  m_Name: Enemy1_Health_Version
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,7 +158,7 @@ Transform:
   m_GameObject: {fileID: 6336584709183651907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.45, y: 2.31, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6336584708140656263}
@@ -207,7 +207,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 368904278, guid: b4af6a4d4998ce140b7e10b3589b27db, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -249,20 +249,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e890f2e35919b74695bd37bf8db7384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedTowardsPlayer: 0.3
-  health: 30
+  speedTowardsPlayer: 0.2
+  health: 20
   damageSource: {fileID: 6336584708140656260}
   deathSource: {fileID: 0}
   whiteMat: {fileID: 2100000, guid: ee424716ac4a9bb4abec9d2823a2780a, type: 2}
   flashTime: 0.08
   destroyTime: 1
-  damage: 5
+  damage: 1
   randomDirectionCooldownMin: 2
   randomDirectionCooldownMax: 4
   randomDirectionSpeedMultiplier: 30
   heart: {fileID: 8230630236835727197, guid: b749703eaa7b0fb4bacb4abf5578f72f, type: 3}
-  heartDropRate: 0.1
-  aggroDistance: 10
+  heartDropRate: 1
+  aggroDistance: 9999
 --- !u!50 &6336584709183652280
 Rigidbody2D:
   serializedVersion: 4
@@ -297,7 +297,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0, y: -0.2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -308,5 +308,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
