@@ -150,6 +150,7 @@ public class Player : MonoBehaviour, IDamageable
         if (damageTimer <= 0) {
 
             health -= dmg;
+            if (health > startHealth) health = startHealth;
 
             if (dmg > 0) {
                 sr.material = whiteMat;

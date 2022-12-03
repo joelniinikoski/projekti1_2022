@@ -27,16 +27,18 @@ public class Boss4 : BossScript
             hpBar.fillAmount = health / startHealth;
         }
 
-        Multiply(2);
-        Multiply(4);
-        Multiply(8);
-
         if (health <= 0 && prevHealth > 0)
         {
             if (healthBarBack)
             {
                 Destroy(healthBarBack, 0.5f);
             }
+            BossOriginInstance.Instance.bossAmount -= 1;
+        }
+        else if (health > 0) {
+            Multiply(2);
+            Multiply(4);
+            Multiply(8);
         }
         
         prevHealth = health;
@@ -46,6 +48,7 @@ public class Boss4 : BossScript
     {
         if (base.boss.GetHealth() <= trueStartHealth / division && base.prevHealth > trueStartHealth / division)
         {
+            BossOriginInstance.Instance.bossAmount += 1;
             GameObject gO = Instantiate(bossPrefab, new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x), Random.Range(spawnAreaMin.y, spawnAreaMax.y)), Quaternion.identity);
             GameObject hBB = Instantiate(base.healthBarBack);
             hBB.transform.SetParent(GameObject.Find("Canvas").transform);

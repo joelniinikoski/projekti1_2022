@@ -30,6 +30,9 @@ public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin, IHasHealth
     [System.NonSerialized]
     public bool isDead = false;
 
+    [SerializeField] float damageAggroTimer = 10f;
+    float currentDamageAggroTimer = 0f;
+
     Rigidbody2D rb;
     SpriteRenderer sr;
     Collider2D cl;
@@ -77,6 +80,10 @@ public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin, IHasHealth
             {
                 randomDirectionCooldown -= Time.deltaTime;
             }
+            if (currentDamageAggroTimer >= 0)
+            {
+                currentDamageAggroTimer -= Time.deltaTime;
+            }
         }
     }
 
@@ -102,7 +109,7 @@ public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin, IHasHealth
                 randomDirectionCooldown = Random.Range(randomDirectionCooldownMin, randomDirectionCooldownMax);
                 direction = Random.insideUnitCircle.normalized;
                 direction = direction.normalized * randomDirectionSpeedMultiplier;
-            } else if (Vector3.Distance(playerT.position, transform.position) < aggroDistance)
+            } else if (Vector3.Distance(playerT.position, transform.position) < aggroDistance || currentDamageAggroTimer > 0)
             {
                 direction = playerT.position - transform.position;
                 direction = direction.normalized;
@@ -120,6 +127,7 @@ public class Enemy1 : MonoBehaviour, IDamageable, IHasOrigin, IHasHealth
         matTimer = flashTime;
 
         health -= dmg;
+        currentDamageAggroTimer = damageAggroTimer;
    
         if (health <= 0)
         {

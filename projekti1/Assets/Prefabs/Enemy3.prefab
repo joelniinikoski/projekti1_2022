@@ -133,8 +133,9 @@ MonoBehaviour:
   randomDirectionCooldownMax: 4
   randomDirectionSpeedMultiplier: 40
   heart: {fileID: 8230630236835727197, guid: b749703eaa7b0fb4bacb4abf5578f72f, type: 3}
-  heartDropRate: 0.5
+  heartDropRate: 0.25
   aggroDistance: 12
+  damageAggroTimer: 10
   shootCooldownMax: 2
   shootCooldownMin: 4
   arrow: {fileID: 5007608923701999615, guid: c5e75fa28b53a664d8e5670d4fc3e0c3, type: 3}

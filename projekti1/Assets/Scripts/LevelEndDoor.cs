@@ -14,7 +14,14 @@ public class LevelEndDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        loadScene.Load(sceneID);
-        loadScene.ChangeScene();
+        if (PlayerPrefs.HasKey("level") && sceneID > PlayerPrefs.GetInt("level") || !PlayerPrefs.HasKey("level"))
+        {
+            if (sceneID >= 1 && sceneID <= 4)
+            {
+                PlayerPrefs.SetInt("level", sceneID);
+            }
+            loadScene.Load(sceneID);
+            loadScene.ChangeScene();
+        }
     }
 }

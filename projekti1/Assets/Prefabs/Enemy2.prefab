@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c39587e99fdb747be9e8b9be2b488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedTowardsPlayer: 0.1
+  speedTowardsPlayer: 0.13
   health: 40
   damageSource: {fileID: 1439824015466598320}
   deathSource: {fileID: 0}
@@ -261,8 +261,9 @@ MonoBehaviour:
   randomDirectionCooldownMax: 4
   randomDirectionSpeedMultiplier: 40
   heart: {fileID: 8230630236835727197, guid: b749703eaa7b0fb4bacb4abf5578f72f, type: 3}
-  heartDropRate: 0.2
+  heartDropRate: 0.1
   aggroDistance: 10
+  damageAggroTimer: 10
   shootCooldownMax: 2
   shootCooldownMin: 4
   arrow: {fileID: 5007608923701999615, guid: c5e75fa28b53a664d8e5670d4fc3e0c3, type: 3}

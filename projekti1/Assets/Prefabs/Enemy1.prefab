@@ -261,8 +261,9 @@ MonoBehaviour:
   randomDirectionCooldownMax: 4
   randomDirectionSpeedMultiplier: 30
   heart: {fileID: 8230630236835727197, guid: b749703eaa7b0fb4bacb4abf5578f72f, type: 3}
-  heartDropRate: 0.1
+  heartDropRate: 0.05
   aggroDistance: 10
+  damageAggroTimer: 10
 --- !u!50 &6336584709183652280
 Rigidbody2D:
   serializedVersion: 4
