@@ -184,6 +184,7 @@ MonoBehaviour:
   heart: {fileID: 8230630236835727197, guid: b749703eaa7b0fb4bacb4abf5578f72f, type: 3}
   heartDropRate: 1
   aggroDistance: 9999
+  damageAggroTimer: 10
   shootCooldownMax: 0.6
   shootCooldownMin: 0.601
   arrow: {fileID: 5007608923701999615, guid: 36c6cf4d1dadc9e498dae88255c5f540, type: 3}
