@@ -147,7 +147,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float dmg, float kb)
     {
-        if (damageTimer <= 0) {
+        if (damageTimer <= 0 || dmg < 0) {
 
             health -= dmg;
             if (health > startHealth) health = startHealth;
