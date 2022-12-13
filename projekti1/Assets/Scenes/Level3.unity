@@ -1077,7 +1077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1546682770915920812, guid: 96134d7b42eaeda41876ec63c07a6fc9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4038166596708137945, guid: 96134d7b42eaeda41876ec63c07a6fc9, type: 3}
       propertyPath: activateDoor
